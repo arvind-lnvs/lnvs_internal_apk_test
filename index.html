@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>LNVS Internal — Device Provisioning</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 720px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .subtitle { color: #666; margin-bottom: 1.25rem; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.75rem;
+      font-size: 0.8125rem;
+      color: #444;
+      margin-bottom: 2rem;
+    }
+    .meta-row .pill {
+      background: #fff;
+      border: 1px solid #e3e3e3;
+      border-radius: 999px;
+      padding: 0.2rem 0.65rem;
+      white-space: nowrap;
+    }
+    .meta-row .pill strong { color: #111; }
+    .qr-section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .qr-section img {
+      max-width: 320px;
+      width: 100%;
+      image-rendering: pixelated;
+    }
+    .qr-section p { color: #666; margin-top: 1rem; font-size: 0.875rem; }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .actions a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #1a73e8;
+      color: #fff;
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+    .actions a.secondary {
+      background: #fff;
+      color: #1a73e8;
+      border: 1px solid #1a73e8;
+    }
+    .actions a:hover { filter: brightness(0.95); }
+    .steps {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .steps h2 { font-size: 1.125rem; margin-bottom: 1rem; }
+    ol { padding-left: 1.25rem; }
+    ol li {
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    ol li strong { color: #111; }
+    .warning {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 0.75rem 1rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.875rem;
+    }
+    .note {
+      background: #e8f4fd;
+      border-left: 4px solid #2196f3;
+      padding: 0.75rem 1rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.875rem;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #888;
+      margin-top: 2rem;
+      word-break: break-all;
+    }
+    .footer code {
+      background: #efefef;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .qr-section, .steps { box-shadow: none; border: 1px solid #ddd; }
+      .actions, .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>LNVS Internal — Device Provisioning</h1>
+    <p class="subtitle">Scan the QR on a factory-reset phone to install and set up the app automatically.</p>
+
+    <div class="meta-row">
+      <span class="pill">Release <strong>v0.0.5</strong></span>
+      <span class="pill">APK <strong>52.4 MB</strong></span>
+      <span class="pill">Built <strong>2026-11-20 09:07 UTC</strong></span>
+    </div>
+
+    <div class="qr-section">
+      <img src="provisioning.png?v=v0.0.5" alt="Provisioning QR Code">
+      <p>Print this page or display it on screen for the operator to scan.</p>
+    </div>
+
+    <div class="actions no-print">
+      <a href="https://github.com/arvind-lnvs/lnvs_internal_apk_test/releases/latest/download/lnvs-internal.apk">Download APK directly</a>
+      <a class="secondary" href="provisioning.png" download="lnvs-internal-qr.png">Save QR image</a>
+      <a class="secondary" href="provisioning.json" download>Provisioning JSON</a>
+    </div>
+
+    <div class="steps">
+      <h2>Setup steps (per phone)</h2>
+
+      <div class="warning">
+        The phone <strong>must</strong> be factory-reset with no Google account added.
+        If setup has already started, reset again before continuing.
+      </div>
+
+      <ol>
+        <li><strong>Factory reset</strong> the phone (Settings &rarr; System &rarr; Reset &rarr; Erase all data). A brand-new phone out of the box is already in this state.</li>
+        <li><strong>Power on and stop at the Welcome screen.</strong> Do not tap Start or add a Google account.</li>
+        <li><strong>Tap the screen 6 times</strong> in the same spot (center of the screen). This opens the QR scanner.</li>
+        <li><strong>Grant camera permission</strong> when prompted, then <strong>scan the QR code</strong> above. Hold the phone 20&ndash;30 cm away in good light.</li>
+        <li>The phone will automatically:
+          <ul style="margin-top:0.5rem">
+            <li>Join the configured Wi-Fi</li>
+            <li>Download and install the APK</li>
+            <li>Set the app as Device Owner</li>
+          </ul>
+          This takes 1&ndash;2 minutes. Keep the phone plugged in or above 30% battery.
+        </li>
+        <li><strong>Setup completes.</strong> The phone reaches the home screen. The app is accessible from Settings &rarr; Apps.</li>
+        <li><strong>Open the app</strong> from Settings &rarr; Apps &rarr; LNVS Internal and sign in with the admin code. Grant all requested permissions:
+          <ul style="margin-top:0.5rem">
+            <li>Notifications</li>
+            <li>Call log</li>
+            <li>Notification access (toggle on in Settings)</li>
+            <li>Unrestricted battery</li>
+          </ul>
+        </li>
+      </ol>
+
+      <div class="note">
+        The app does not appear in the launcher. It is only visible under Settings &rarr; Apps.
+        Uninstall is blocked while the app is Device Owner, until unlocked from the in-app menu.
+      </div>
+    </div>
+
+    <p class="footer">
+      Signing cert SHA-256 (b64url): <code>wNQSQqnp1W_6x2_iIadyeUqdGLjL8GRQeak9nyrkb2w</code>
+    </p>
+  </div>
+</body>
+</html>

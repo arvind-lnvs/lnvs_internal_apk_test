@@ -1,0 +1,6 @@
+{
+  "android.app.extra.PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME": "com.lnvs.lnvs_internal/com.lnvs.lnvs_internal.admin.AppDeviceAdminReceiver",
+  "android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION": "https://github.com/arvind-lnvs/lnvs_internal_apk_test/releases/latest/download/lnvs-internal.apk",
+  "android.app.extra.PROVISIONING_DEVICE_ADMIN_SIGNATURE_CHECKSUM": "wNQSQqnp1W_6x2_iIadyeUqdGLjL8GRQeak9nyrkb2w",
+  "android.app.extra.PROVISIONING_LEAVE_ALL_SYSTEM_APPS_ENABLED": true
+}
